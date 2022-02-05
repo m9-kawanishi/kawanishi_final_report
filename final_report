@@ -1,0 +1,101 @@
+#include <iostream>
+#include <vector>
+#include <chrono>
+#include <thread>
+#include <mutex>
+#include <algorithm>
+#include <functional>
+using namespace std;
+
+struct Curry{
+    string name;
+    int price;
+    int quantity;
+};
+
+void Allearn(int v, int w, int x, int y, int z){
+    cout << v+w+x+y+z;
+}
+
+int main(){
+    int a,b,c,d,e,f,g,h,i,j;
+    vector<int> earning;
+    string k,l;
+    cout << "シンプルカレーの売上個数を入力してください\n";
+    cin >> a;
+    cout << "チキンカレーの売上個数を入力してください\n";
+    cin >> b;
+    cout << "カツカレーの売上個数を入力してください\n";
+    cin >> c;
+    cout << "キーマカレーの売上個数を入力してください\n";
+    cin >> d;
+    cout << "ビーフカレーの売上個数を入力してください\n";
+    cin >> e;
+    
+    Curry simple{"simple", 400, a};
+    Curry chicken{"chicken", 500, b};
+    Curry cutlet{"cutlet", 600, c};
+    Curry keema{"keema", 650, d};
+    Curry beef{"beef", 700, e};
+    
+    f = 400*a;
+    g = 500*b;
+    h = 600*c;
+    i = 650*d;
+    j = 700*e;
+    earning.push_back(f);
+    earning.push_back(g);
+    earning.push_back(h);
+    earning.push_back(i);
+    earning.push_back(j);
+    
+    sort(earning.begin(), earning.end());
+    if(earning[4] == f){
+        k = "シンプルカレー";
+    }
+    if(earning[4] == g){
+        k = "チキンカレー";
+    }
+    if(earning[4] == h){
+        k = "カツカレー";
+    }
+    if(earning[4] == i){
+        k = "キーマカレー";
+    }
+    if(earning[4] == j){
+        k = "ビーフカレー";
+    }
+    if(earning[0] == f){
+        l = "シンプルカレー";
+    }
+    if(earning[0] == g){
+        l = "チキンカレー";
+    }
+    if(earning[0] == h){
+        l = "カツカレー";
+    }
+    if(earning[0] == i){
+        l = "キーマカレー";
+    }
+    if(earning[0] == j){
+        l = "ビーフカレー";
+    }
+    int maxprofit = max({f,g,h,i,j});
+    int minprofit = min({f,g,h,i,j});
+    int rate1 = maxprofit * 100 / (f+g+h+i+j);
+    int rate2 = minprofit * 100 / (f+g+h+i+j);
+
+    cout << "本日の総売上は、";
+    Allearn(f, g, h, i, j);
+    cout << "円です。" << endl;
+    cout << "今日最大の売上は" << k << "で、その売上は" << maxprofit << "円です。" << endl;
+    cout << "それは全体の売上の約" << rate1  << "%を占めています" << endl;
+    
+    if(rate1 > 35){
+        cout << "売上が好調であるため" << k << "の仕込み数を増やしましょう" << endl;
+    }
+    
+    if(rate2 < 10){
+        cout << "売上が不調であるため" << l << "の仕込み数を減らしましょう" << endl;
+    }
+}
